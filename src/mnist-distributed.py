@@ -7,8 +7,8 @@ import torchvision.transforms as transforms
 import torch
 import torch.nn as nn
 import torch.distributed as dist
-from apex.parallel import DistributedDataParallel as DDP
-from apex import amp
+# from apex.parallel import DistributedDataParallel as DDP
+# from apex import amp
 
 
 def main():
@@ -23,8 +23,8 @@ def main():
                         help='number of total epochs to run')
     args = parser.parse_args()
     args.world_size = args.gpus * args.nodes
-    os.environ['MASTER_ADDR'] = '10.57.23.164'
-    os.environ['MASTER_PORT'] = '8888'
+    os.environ['MASTER_ADDR'] = '172.16.11.46'
+    os.environ['MASTER_PORT'] = '8846'
     mp.spawn(train, nprocs=args.gpus, args=(args,))
 
 
